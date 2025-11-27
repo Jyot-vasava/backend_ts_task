@@ -25,34 +25,51 @@ Each organization gets a **dedicated dynamic MongoDB collection**, its own **adm
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-**flowchart TD**
-    A[backend] --> B[src]
 
+### Project Architecture Flowchart
+
+```mermaid
+flowchart TD
+    A[backend] --> B[src]
     B --> C[controllers]
     C --> C1[authController.ts]
     C --> C2[orgController.ts]
-
+    
     B --> D[db]
     D --> D1[database.ts]
-
+    
     B --> E[middleware]
     E --> E1[auth.ts]
-
+    
     B --> F[models]
-    F --> F1[organization.ts]
-
+    F --> F1[Organization.ts]
+    
     B --> G[routes]
-    G --> G1[authRoute.ts]
-    G --> G2[orgRoute.ts]
-
+    G --> G1[authRoutes.ts]
+    G --> G2[orgRoutes.ts]
+    
     B --> H[utils]
     H --> H1[constants.ts]
-
+    
     B --> I[app.ts]
     B --> J[index.ts]
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Admin Login & JWT Flow Diagram**
 
+    style A fill:#4CAF50,stroke:#333,color:white
+    style B fill:#2196F3,stroke:#333,color:white
+    style C fill:#FF9800,stroke:#333,color:white
+    style D fill:#9C27B0,stroke:#333,color:white
+    style E fill:#F44336,stroke:#333,color:white
+    style F fill:#00BCD4,stroke:#333,color:white
+    style G fill:#CDDC39,stroke:#333,color:white
+    style H fill:#795548,stroke:#333,color:white
+    style I fill:#607D8B,stroke:#333,color:white
+    style J fill:#E91E63,stroke:#333,color:white
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+```mermaid
 sequenceDiagram
     autonumber
     participant Client
@@ -68,18 +85,24 @@ sequenceDiagram
     JWTService-->>AuthController: Token
     AuthController-->>Client: Return JWT
 
-    Client->>ProtectedRoute: Request with Authorization: Bearer <token>
+    Client->>ProtectedRoute: Request with Bearer Token
     ProtectedRoute->>JWTService: Verify Token
     JWTService-->>ProtectedRoute: Token Valid
     ProtectedRoute-->>Client: Access Granted
+```
+
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Organization Lifecycle Diagram (Create → Update → Delete)**
+```mermaid
 flowchart LR
     A[Create Organization<br/>POST /org/create] --> B[Create Dynamic Collection<br/>org_<name>]
     B --> C[Store Metadata in Master DB]
-    C --> D[Admin Login<br/>/admin/login]
+    C --> D[Admin Login<br/>POST /admin/login]
     D --> E[Update Organization<br/>PUT /org/update]
     E --> F[Delete Organization<br/>DELETE /org/delete]
+```
+
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Quick Start**
