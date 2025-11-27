@@ -78,17 +78,17 @@ sequenceDiagram
     participant JWTService
     participant ProtectedRoute
 
-    Client->>AuthController: POST /admin/login<br/>email + password
+    Client->>AuthController: POST /admin/login\nemail + password
     AuthController->>MongoDB: Validate admin credentials
     MongoDB-->>AuthController: Credentials valid
-    AuthController->>JWTService: Generate JWT Token
-    JWTService-->>AuthController: Token
-    AuthController-->>Client: Return JWT
+    AuthController->>JWTService: Generate JWT token
+    JWTService-->>AuthController: Return token
+    AuthController-->>Client: Send JWT token
 
-    Client->>ProtectedRoute: Request with Bearer Token
-    ProtectedRoute->>JWTService: Verify Token
-    JWTService-->>ProtectedRoute: Token Valid
-    ProtectedRoute-->>Client: Access Granted
+    Client->>ProtectedRoute: Request with Bearer token
+    ProtectedRoute->>JWTService: Verify token
+    JWTService-->>ProtectedRoute: Token valid
+    ProtectedRoute-->>Client: Access granted
 ```
 
 
