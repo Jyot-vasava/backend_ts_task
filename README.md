@@ -58,11 +58,11 @@ Install deps
                      => npm install
     
 create a .env file:
-                      =>JWT_SECRET=your_very_strong_secret_key_here_2025
-                      =>MONGO_URI=mongodb+srv://vasavajyotkumar_db_user:iAcFWNjFoWIFIDhS@cluster21.ijzwy7a.mongodb.net/
-                      =>PORT=3000 
-                      =>NODE_ENV=development
-                      =>MONGO_DB_NAME=Database
+                      =>JWT_SECRET
+                      =>MONGO_URI
+                      =>PORT
+                      =>NODE_ENV
+                      =>MONGO_DB_NAME
 
 then:
                        =>npm run dev
