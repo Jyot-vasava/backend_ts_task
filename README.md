@@ -1,11 +1,11 @@
-# 🚀 Organization Management Backend (Multi-Tenant Architecture)
+#  Organization Management Backend (Multi-Tenant Architecture)
 
 This project is a backend service built using **Node.js**, **Express**, **TypeScript**, and **MongoDB** to manage organizations in a **multi-tenant architecture**.  
 Each organization gets a **dedicated dynamic MongoDB collection**, its own **admin user**, and secure **JWT authentication**.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## 📌 Features
+##  Features
 
 ### 🏢 Organization Management
 - Create a new organization with:
@@ -17,7 +17,7 @@ Each organization gets a **dedicated dynamic MongoDB collection**, its own **adm
 - Update an existing organization  
 - Delete organization (only authenticated admin can delete)
 
-### 🔐 Authentication
+###  Authentication
 - Admin login (email + password)
 - JWT-based authorization
 - Password hashing using **bcrypt**
@@ -122,7 +122,7 @@ then:
                        =>npm run dev
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-📌 **Additional Questions — Answer**
+ **Additional Questions — Answer**
 ✅ Is this a good architecture with a scalable design?
 
 Yes — the proposed architecture using a master database + dynamic collections for each organization is a valid, functional, and moderately scalable approach for multi-tenancy.
@@ -139,13 +139,13 @@ This reduces the risk of cross-tenant data leakage and simplifies query logic.
 Dynamic collection creation is easy with MongoDB.
 It allows rapid onboarding of new organizations without changing the schema.
 
-**❗ Trade-offs and Limitations**
-⚠️ 1. Single Database = Single Point of Failure
+** Trade-offs and Limitations**
+ 1. Single Database = Single Point of Failure
 
 All tenants rely on one database instance.
 If the master DB goes down, all organizations are affected.
 
-⚠️ 2. Collection Growth May Cause Performance Issues
+ 2. Collection Growth May Cause Performance Issues
 
 MongoDB performs well with many documents,
 but too many collections (hundreds or thousands) can slow:
@@ -153,7 +153,7 @@ Indexing
 Query planner performance
 Disk metadata operations
 
-⚠️ 3. Harder to Scale Beyond a Limit
+ 3. Harder to Scale Beyond a Limit
 
 As data grows, vertical scaling becomes expensive.
 Tenants with heavy traffic may impact others.
